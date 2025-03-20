@@ -13,6 +13,8 @@ class ScrapeAmzonReview:
 
         # Send a GET request to the search URL
         response = requests.get(url, headers=headers)
+        # response = requests.get(url)
+
         
         
         # run coroutine from server to client 
@@ -52,15 +54,15 @@ class ScrapeAmzonReview:
 
         # Find all review containers
         review_elements = soup.find_all('div', class_='reviewText')
-
         for review in review_elements:
             # Extract the review text from the span tag inside the nested div
             comment = review.find('span')
             if comment:
+                # print("ELEMENTS :   " , comment.get_text(strip=True))
                 review_data = {
                     'comment': comment.get_text(strip=True)
                 }
-                reviews.append(review_data)
+                reviews.append(comment.get_text(strip=True))
 
         return reviews
 

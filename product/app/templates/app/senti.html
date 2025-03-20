@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result-container {
+            display: none;
+            text-align: left;
+            margin-top: 20px;
+        }
+        .summary {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+        .recommendations {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 8px;
+        }
+        .recommendations h4 {
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Product Evaluation</h2>
+        <form id="sentimentForm">
+            <input type="text" id="productName" placeholder="Enter Product Name" required>
+            <button type="submit">Analyze</button>
+        </form>
+
+        <div id="result" class="result-container">
+            <h3>Analysis Result for <span id="productTitle"></span></h3>
+
+            <div class="summary">
+                <h4>Product Summary</h4>
+                <p id="productSummary">A well-balanced smartphone with an impressive display, excellent battery life, and a powerful processor. The camera performance is top-notch, but the price may be a bit high for some users.</p>
+            </div>
+
+            <h4>Pros and Cons</h4>
+            <table>
+                <tr>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+                <tr>
+                    <td>Great display quality</td>
+                    <td>Expensive</td>
+                </tr>
+                <tr>
+                    <td>Excellent battery life</td>
+                    <td>No headphone jack</td>
+                </tr>
+                <tr>
+                    <td>Powerful processor</td>
+                    <td>Software updates can be slow</td>
+                </tr>
+                <tr>
+                    <td>Great camera performance</td>
+                    <td>Limited fast charging</td>
+                </tr>
+            </table>
+
+            <h4>User Ratings</h4>
+            <canvas id="ratingChart"></canvas>
+
+            <div class="recommendations">
+                <h4>Recommended Alternatives</h4>
+                <ul>
+                    <li><strong>iPhone 15</strong> - Premium feel, iOS ecosystem, excellent camera.</li>
+                    <li><strong>Google Pixel 8</strong> - Best AI features, outstanding camera quality.</li>
+                    <li><strong>OnePlus 12</strong> - Great performance at a lower price.</li>
+                    <li><strong>Xiaomi 13 Pro</strong> - High-end features with value-for-money.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

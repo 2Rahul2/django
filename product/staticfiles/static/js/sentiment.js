@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
         axios.get('sentiment/' ,{
             params:{product:productName}
         }).then(response => {
-            console.log(response.data.review)
+            console.log(response.data)
+            console.log(response.data.summary)
             let sentiment = response.data.data;
             resultDiv.innerHTML = `<p class="text-gray-700">Sentiment: <span class="font-bold">${sentiment}</span></p>`;
         })
@@ -28,3 +29,15 @@ document.addEventListener("DOMContentLoaded", function() {
         // }, 2000);
     });
 });
+
+export const GetData = async ()=>{
+    await axios.get('sentiment/' ,{
+        params:{product:productName}
+    }).then(response => {
+        console.log(response.data)
+        return response.data
+    })
+    .catch(error => {
+        return null
+    });
+}
