@@ -14,35 +14,43 @@ class GetSummary:
         # """
 
         prompt = f"""
-        Analyze the following product review and return a structured JSON with 'summary', 'pros', 'cons', and 'recommendations' for similar products.
+Analyze the following product review and return a structured JSON with 'summary', 'pros', 'cons', and 'recommendations' for similar products.
+For both 'pros' and 'cons', also include their percentage representation (e.g., 60% pros, 40% cons).
 
-        Review for: {product_name}
+Review for: {product_name}
 
-        Review:
-        {review_text}
+Review:
+{review_text}
 
-        Strictly output only valid JSON, without extra text or explanations. Ensure it follows this format:
+Strictly output only valid JSON, without extra text or explanations. Ensure it follows this format:
 
+{{
+    "summary": "Short summary of the review",
+    "pros": {{
+        "items": ["List of pros"],
+        "percentage": <Percentage of pros, e.g., 60>
+    }},
+    "cons": {{
+        "items": ["List of cons"],
+        "percentage": <Percentage of cons, e.g., 40>
+    }},
+    "recommendations": [
         {{
-            "summary": "Short summary of the review",
-            "pros": ["List of pros"],
-            "cons": ["List of cons"],
-            "recommendations": [
-                {{
-                    "product_name": "Alternative Product 1",
-                    "key_features": ["Feature 1", "Feature 2"],
-                    "why_recommended": "Short reason why this is a good alternative"
-                }},
-                {{
-                    "product_name": "Alternative Product 2",
-                    "key_features": ["Feature 1", "Feature 2"],
-                    "why_recommended": "Short reason why this is a good alternative"
-                }}
-            ]
+            "product_name": "Alternative Product 1",
+            "key_features": ["Feature 1", "Feature 2"],
+            "why_recommended": "Short reason why this is a good alternative"
+        }},
+        {{
+            "product_name": "Alternative Product 2",
+            "key_features": ["Feature 1", "Feature 2"],
+            "why_recommended": "Short reason why this is a good alternative"
         }}
+    ]
+}}
 
-        Only return JSON output. Do not include any additional explanations.
-        """
+Only return JSON output. Do not include any additional explanations.
+"""
+
 
 
         response = client.models.generate_content(

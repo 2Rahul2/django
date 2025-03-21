@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentiment Analysis</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="module" src="{% static 'js/index.js' %}" ></script>
+    <script type="module" src="{% static 'js/sentiment.js' %}"></script>
+
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -73,6 +82,10 @@
         }
         canvas {
             margin-top: 20px;
+            max-width: 400px; /* Adjust the width */
+            max-height: 300px; /* Adjust the height */
+            margin-left: auto;
+            margin-right: auto;
         }
         .recommendations {
             margin-top: 20px;
@@ -127,7 +140,7 @@
             </table>
 
             <h4>User Ratings</h4>
-            <canvas id="ratingChart"></canvas>
+            <canvas id="prosConsChart"></canvas>
 
             <div class="recommendations">
                 <h4>Recommended Alternatives</h4>
