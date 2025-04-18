@@ -6,7 +6,7 @@ document.getElementById("sentimentForm").addEventListener("submit",async functio
     event.preventDefault();
     const productName = document.getElementById("productName").value.trim();
 
-    if (productName.toLowerCase() === "samsung s24") {
+    if (true) {
         let data =await GetData(productName.toLowerCase())
         console.log(data)
         if (data) {
