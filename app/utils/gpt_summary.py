@@ -1,9 +1,12 @@
 from google import genai
 import json
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 class GetSummary:
     def get_summary(self , review_text , product_name):
-        api_key = "AIzaSyB2zWD1W0M9aW8POfblqfgi887hTlmBlok"
+        api_key = os.getenv("GOOGLE_API_KEY")
 
         client = genai.Client(api_key=api_key)
 
